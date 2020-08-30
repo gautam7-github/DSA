@@ -7,8 +7,6 @@ int binarySearch(int array[], int low, int high, int search)
         int mid = (low + high) / 2;
         if (array[mid] == search)
         {
-            //to check if duplicates are present
-            linear(array, mid, low, high, search);
             return mid;
         }
         if (array[mid] > search)
@@ -21,16 +19,6 @@ int binarySearch(int array[], int low, int high, int search)
         }
     }
     return -1;
-}
-void linear(int arr[], int middle, int low, int high, int search)
-{
-    for (int i = low; i <= high; i++)
-    {
-        if (arr[i] == search)
-        {
-            printf("AT %d \n", i);
-        }
-    }
 }
 void sort(int array[], int n)
 {
@@ -93,6 +81,7 @@ int main()
     }
     else
     {
+        printf("AT %d \n", pos);
         printf("SUCCESS\n");
     }
 
