@@ -77,7 +77,7 @@ int main()
 
     if (pos == -1)
     {
-        printf("ELEMENT NOT FOUND");
+        printf("ELEMENT NOT FOUND\n");
     }
     else
     {
