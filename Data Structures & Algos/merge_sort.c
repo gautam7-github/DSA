@@ -1,27 +1,28 @@
 // Merge sort in C
-
+// todo optimise merge sort or shorten the code
 #include <stdio.h>
 
 // Merge two subarrays L and M into arr
-void merge(int arr[], int p, int q, int r)
+void merge(int arr[], int low, int mid, int high)
 {
 
     // Create L ← A[p..q] and M ← A[q+1..r]
-    int n1 = q - p + 1;
-    int n2 = r - q;
+    int n1 = mid - low + 1;
+    int n2 = high - mid;
 
     int L[n1], M[n2];
 
     for (int i = 0; i < n1; i++)
-        L[i] = arr[p + i];
+        L[i] = arr[low + i];
+
     for (int j = 0; j < n2; j++)
-        M[j] = arr[q + 1 + j];
+        M[j] = arr[mid + 1 + j];
 
     // Maintain current index of sub-arrays and main array
     int i, j, k;
     i = 0;
     j = 0;
-    k = p;
+    k = low;
 
     // Until we reach either end of either L or M, pick larger among
     // elements L and M and place them in the correct position at A[p..r]
@@ -58,17 +59,19 @@ void merge(int arr[], int p, int q, int r)
 }
 
 // Divide the array into two subarrays, sort them and merge them
-void mergeSort(int arr[], int l, int r)
+void mergeSort(int arr[], int low, int high)
 {
-    if (l < r)
+    if (low < high)
     {
 
-        // m is the point where the array is divided into two subarrays
-        int m = l + (r - l) / 2;
-        mergeSort(arr, l, m);
-        mergeSort(arr, m + 1, r);
+        // mid is the point where the array is divided into two subarrays
+        int mid = (low + high) / 2;
+        //for left half sub array
+        mergeSort(arr, low, mid);
+        //for right half sub array
+        mergeSort(arr, mid + 1, high);
         // Merge the sorted subarrays
-        merge(arr, l, m, r);
+        merge(arr, low, mid, high);
     }
 }
 

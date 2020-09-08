@@ -1,21 +1,27 @@
 #include <stdio.h>
 void printArray(int arr[], int size);
-void insertionSort(int arr[], int size)
+void selectionSort(int arr[], int size)
 {
-    int i, j, swap;
-    printf("SORTING ARRAY....\n");
-    for (i = 1; i < size; i++)
+    int i, j, swap, min_pos;
+    printf("SORTING....\n");
+    for (i = 0; i < size - 1; i++)
     {
-        j = i;
-        while (j > 0 && arr[j - 1] > arr[j])
+        min_pos = i;
+        for (j = i + 1; j < size; j++)
         {
-            swap = arr[j];
-            arr[j] = arr[j - 1];
-            arr[j - 1] = swap;
-            --j;
+            if (arr[min_pos] > arr[j])
+            {
+                min_pos = j;
+            }
         }
-        printArray(arr, size);
+        if (min_pos != i)
+        {
+            swap = arr[min_pos];
+            arr[min_pos] = arr[i];
+            arr[i] = swap;
+        }
     }
+
     printf("ARRAY SORTED....\n");
 }
 void printArray(int arr[], int size)
@@ -45,7 +51,7 @@ int main()
         scanf("%d", &array[i]);
     }
     printArray(array, n);
-    insertionSort(array, n);
+    selectionSort(array, n);
     printArray(array, n);
     return 0;
 }
