@@ -1,4 +1,7 @@
 {
     "editor.formatOnType": true,
-    "editor.mouseWheelZoom": true
+    "editor.mouseWheelZoom": true,
+    "files.associations": {
+        "iostream": "cpp"
+    }
 }

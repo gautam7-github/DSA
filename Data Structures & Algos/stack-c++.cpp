@@ -1,21 +1,22 @@
 #include <iostream>
 using namespace std;
-//define max limit for stack
-#define MAX_STACK 10
 //stacks
 class stack
 {
 private:
     int top;
-    int array[MAX_STACK];
+    int array[1];
 
 public:
+    int MAX_STACK;
     //constructer to initialise stack limits
-    stack()
+    stack(int max)
     {
+        MAX_STACK = max;
         top = -1;
-        cout << "MAX CAPACITY IS : " << MAX_STACK << endl;
-        cout << "TOP NOW IS : " << top << endl;
+        cout << " || MAX CAPACITY IS : " << MAX_STACK << endl;
+        cout << " || TOP NOW IS      : " << top << endl;
+        cout << "----------------------" << endl;
     }
     bool isEmpty()
     {
@@ -54,28 +55,39 @@ public:
             cout << "LEFT   : " << MAX_STACK - (top + 1) << endl;
         }
     }
+    int pop()
+    {
+        if (isEmpty())
+        {
+            cout << "CANNOT POP - STACK EMPTY" << endl;
+        }
+        else
+        {
+            int popVal = array[top];
+            top--;
+            return popVal;
+        }
+    }
+    void display()
+    {
+        for (int i = top; i >= 0; i--)
+        {
+            cout << " | " << i << " : " << array[i] << " | " << endl;
+        }
+        cout << " ---------" << endl;
+    }
 };
 
 int main()
 {
-    class stack s;
-    if (s.isEmpty())
-    {
-        cout << "STACK IS EMPTY" << endl;
-    }
-    else
-    {
-        cout << "STACK IS NOT EMPTY" << endl;
-    }
-    if (s.isFull())
-    {
-        cout << "STACK IS FULL" << endl;
-    }
-    else
-    {
-        cout << "STACK IS NOT FULL" << endl;
-    }
+    class stack s(10);
     s.push(21);
     s.push(22);
+    s.display();
+    cout << "POPPED - " << s.pop() << endl;
+    s.push(35);
+    s.push(45);
+    s.display();
+    cout << "POPPED - " << s.pop() << endl;
     return 0;
 }
