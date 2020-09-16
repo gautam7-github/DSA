@@ -4,20 +4,36 @@ using namespace std;
 class stack
 {
 private:
+    // top value of stack
     int top;
-    int array[1];
+    // a pointer to allocate specified block of memory
+    int *array;
+    // a secondary variable used to store MAX capacity of Stack
+    int MAX_STACK;
 
 public:
-    int MAX_STACK;
-    //constructer to initialise stack limits
+    //constructer to initialise stack limits and variables
+    //TODO Optimise code by using DMA
     stack(int max)
     {
-        MAX_STACK = max;
+        // top is initialised to -1
         top = -1;
-        cout << " || MAX CAPACITY IS : " << MAX_STACK << endl;
-        cout << " || TOP NOW IS      : " << top << endl;
-        cout << "----------------------" << endl;
+        // max value taken in as parameter and then transferred to MAX_STACK
+        MAX_STACK = max;
+        // size is max and memory has been allocated
+        array = new (nothrow) int[max];
+        if (!array)
+        {
+            cout << "TASK FAILED SUCCESSFULY" << endl;
+        }
+        else
+        {
+            cout << "  MAX CAPACITY : " << MAX_STACK << endl;
+            cout << "      TOP      : " << top << endl;
+            cout << "----------------------" << endl;
+        }
     }
+
     bool isEmpty()
     {
         if (top == -1)
@@ -40,17 +56,17 @@ public:
             return false;
         }
     }
-    void push(int item)
+    void push(int pushItem)
     {
         if (isFull())
         {
-            cout << "CANNOT PUSH " << item << " - STACK FULL" << endl;
+            cout << "CANNOT PUSH " << pushItem << " - STACK FULL" << endl;
         }
         else
         {
             top++;
-            array[top] = item;
-            cout << "PUSHED : " << item << endl;
+            array[top] = pushItem;
+            cout << "PUSHED : " << pushItem << endl;
             cout << "TOP    : " << top << endl;
             cout << "LEFT   : " << MAX_STACK - (top + 1) << endl;
         }
@@ -59,7 +75,7 @@ public:
     {
         if (isEmpty())
         {
-            cout << "CANNOT POP - STACK EMPTY" << endl;
+            cout << "CANNOT POP TOP - STACK EMPTY" << endl;
         }
         else
         {
@@ -76,18 +92,64 @@ public:
         }
         cout << " ---------" << endl;
     }
+    void peek()
+    {
+        cout << "WELCOME TO PEEK" << endl;
+        if (top == -1)
+        {
+            cout << "STACK HAS UNDERFLOWED" << endl;
+        }
+        else
+        {
+            cout << "PEEK SAYS TOP IS : " << array[top] << endl;
+        }
+    }
 };
 
 int main()
 {
-    class stack s(10);
-    s.push(21);
-    s.push(22);
-    s.display();
-    cout << "POPPED - " << s.pop() << endl;
-    s.push(35);
-    s.push(45);
-    s.display();
-    cout << "POPPED - " << s.pop() << endl;
+    int choice, pushVal, size_stack;
+    cout << "ENTER SIZE OF STACK : " << endl;
+    cin >> size_stack;
+    cout << "NOTE THAT IT CANNOT BE CHANGED... " << endl;
+    //calling stack class constructer
+    class stack s(size_stack);
+
+    do
+    {
+        cout << "1. PUSH" << endl;
+        cout << "2. POP" << endl;
+        cout << "3. PEEK" << endl;
+        cout << "4. DISPLAY" << endl;
+        cout << "5. EXIT" << endl;
+        cout << "ENTER CHOICE : " << endl;
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            cout << "VALUE TO PUSH - " << endl;
+            cin >> pushVal;
+            s.push(pushVal);
+            break;
+        case 2:
+            s.pop();
+            break;
+        case 3:
+            s.peek();
+            break;
+        case 4:
+            s.display();
+            break;
+        case 5:
+            cout << "GOODBYE" << endl;
+            return 0;
+            break;
+        default:
+            cout << "RETRY" << endl;
+            break;
+        }
+    } while (true);
+
     return 0;
 }

@@ -47,8 +47,8 @@ int tell()
 {
     if (top == -1)
     {
-        printf("-- PUSH ALLOWED --\n");
-        printf("STACK UNDERFLOW\n");
+        printf("-- PUSH ALLOWED    --\n");
+        printf("   STACK UNDERFLOW   \n");
         printf("-- POP NOT ALLOWED --\n");
     }
     else
