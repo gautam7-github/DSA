@@ -43,44 +43,24 @@ int display()
         }
     }
 }
-int tell()
+int peek()
 {
-    if (top == -1)
-    {
-        printf("-- PUSH ALLOWED    --\n");
-        printf("   STACK UNDERFLOW   \n");
-        printf("-- POP NOT ALLOWED --\n");
-    }
-    else
-    {
-        if (top == MAX - 1)
-        {
-            printf("\n");
-            printf("-- POP ALLOWED --\n");
-            printf("THERE ARE %d ELEMENTS IN THE STACK\n", top + 1);
-            printf("-- PUSH NOT ALLOWED --\n");
-        }
-        else
-        {
-            printf("THERE ARE %d ELEMENTS IN THE STACK\n", top + 1);
-        }
-    }
+    printf("%d \n", stack[top]);
 }
 int main()
 {
-    tell();
     push(23);
     push(43);
     display();
-    tell();
+    peek();
     printf("POPPED : %d\n", pop());
     printf("POPPED : %d\n", pop());
-    tell();
+    peek();
     push(45);
     push(56);
     push(66);
     push(67);
     printf("POPPED : %d\n", pop());
     display();
-    tell();
+    peek();
 }

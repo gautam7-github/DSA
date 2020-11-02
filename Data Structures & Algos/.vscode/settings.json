@@ -3,5 +3,7 @@
     "editor.mouseWheelZoom": true,
     "files.associations": {
         "iostream": "cpp"
-    }
+    },
+    "python.pythonPath": "C:\\Users\\91978\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    "C_Cpp.errorSquiggles": "Enabled"
 }

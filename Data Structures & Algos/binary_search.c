@@ -1,5 +1,5 @@
 #include <stdio.h>
-void linear(int arr[], int middle, int low, int high, int search);
+// binary search
 int binarySearch(int array[], int low, int high, int search)
 {
     if (high >= low)

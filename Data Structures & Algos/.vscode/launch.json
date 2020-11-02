@@ -8,14 +8,14 @@
 			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/stack.exe",
+			"program": "${fileDirname}/${fileBasenameNoExtension}.exe",
 			"args": [],
-			"stopAtEntry": false,
+			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
-			"externalConsole": false,
+			"externalConsole": true,
 			"MIMode": "gdb",
-			"miDebuggerPath": "/path/to/gdb",
+			"miDebuggerPath": "C:\\Program Files (x86)\\CodeBlocks\\MinGW\\bin\\gdb32.exe",
 			"setupCommands": [
 				{
 					"description": "Enable pretty-printing for gdb",
@@ -23,17 +23,6 @@
 					"ignoreFailures": true
 				}
 			]
-		},
-		{
-			"name": "(Windows) Launch",
-			"type": "cppvsdbg",
-			"request": "launch",
-			"program": "enter program name, for example ${workspaceFolder}/a.exe",
-			"args": [],
-			"stopAtEntry": false,
-			"cwd": "${workspaceFolder}",
-			"environment": [],
-			"externalConsole": false
 		}
 	]
 }

@@ -13,14 +13,10 @@ private:
 
 public:
     //constructer to initialise stack limits and variables
-    //TODO Optimise code by using DMA
     stack(int max)
     {
-        // top is initialised to -1
         top = -1;
-        // max value taken in as parameter and then transferred to MAX_STACK
         MAX_STACK = max;
-        // size is max and memory has been allocated
         array = new (nothrow) int[max];
         if (!array)
         {
@@ -104,6 +100,10 @@ public:
             cout << "PEEK SAYS TOP IS : " << array[top] << endl;
         }
     }
+    ~stack()
+    {
+        delete[] array;
+    }
 };
 
 int main()
@@ -149,6 +149,7 @@ int main()
             cout << "RETRY" << endl;
             break;
         }
+        system("cls");
     } while (true);
 
     return 0;
