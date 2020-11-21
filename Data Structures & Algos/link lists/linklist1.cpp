@@ -44,6 +44,22 @@ public:
     }
     void insertEnd(string nodeData)
     {
+        if (head == NULL)
+            insertStart(nodeData);
+        else
+        {
+            Node *newNode = new Node;
+            Node *temp = head;
+
+            newNode->data = nodeData;
+            newNode->link = NULL;
+
+            while (temp->link != NULL)
+            {
+                temp = temp->link;
+            }
+            temp->link = newNode;
+        }
     }
     void displayList()
     {
@@ -188,7 +204,7 @@ int main()
             case 2:
                 cout << "DATA : ";
                 cin >> Data;
-                list->insertStart(Data);
+                list->insertEnd(Data);
                 break;
             case 3:
                 list->deleteStart();
