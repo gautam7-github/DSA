@@ -45,20 +45,22 @@ public:
     void insertEnd(string nodeData)
     {
         if (head == NULL)
+        {
             insertStart(nodeData);
+        }
         else
         {
             Node *newNode = new Node;
-            Node *temp = head;
-
             newNode->data = nodeData;
             newNode->link = NULL;
 
-            while (temp->link != NULL)
+            Node *trav = head;
+
+            while (trav->link != NULL)
             {
-                temp = temp->link;
+                trav = trav->link;
             }
-            temp->link = newNode;
+            trav->link = newNode;
         }
     }
     void displayList()
