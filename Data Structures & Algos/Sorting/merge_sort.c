@@ -1,12 +1,12 @@
 // Merge sort in C
 // todo optimise merge sort or shorten the code
 #include <stdio.h>
-
+int size = 0;
 // Merge two subarrays L and M into arr
 void merge(int arr[], int low, int mid, int high)
 {
 
-    // Create L ← A[p..q] and M ← A[q+1..r]
+    /*// Create L ← A[p..q] and M ← A[q+1..r]
     int n1 = mid - low + 1;
     int n2 = high - mid;
 
@@ -17,25 +17,27 @@ void merge(int arr[], int low, int mid, int high)
 
     for (int j = 0; j < n2; j++)
         M[j] = arr[mid + 1 + j];
+        */
 
     // Maintain current index of sub-arrays and main array
     int i, j, k;
-    i = 0;
-    j = 0;
+    i = low;
+    j = mid + 1;
     k = low;
+    int b[size];
 
     // Until we reach either end of either L or M, pick larger among
     // elements L and M and place them in the correct position at A[p..r]
-    while (i < n1 && j < n2)
+    while (i <= mid && j <= high)
     {
-        if (L[i] <= M[j])
+        if (arr[i] <= arr[j])
         {
-            arr[k] = L[i];
+            b[k] = arr[i];
             i++;
         }
         else
         {
-            arr[k] = M[j];
+            b[k] = arr[j];
             j++;
         }
         k++;
@@ -43,18 +45,23 @@ void merge(int arr[], int low, int mid, int high)
 
     // When we run out of elements in either L or M,
     // pick up the remaining elements and put in A[p..r]
-    while (i < n1)
+    while (i <= mid)
     {
-        arr[k] = L[i];
+        b[k] = arr[i];
         i++;
         k++;
     }
 
-    while (j < n2)
+    while (j <= high)
     {
-        arr[k] = M[j];
+        b[k] = arr[j];
         j++;
         k++;
+    }
+
+    for (int i = low; i <= high; i++)
+    {
+        arr[i] = b[i];
     }
 }
 
@@ -85,11 +92,10 @@ void printArray(int arr[], int size)
 // Driver program
 int main()
 {
-    int size;
 
     printf("ENTER SIZE : ");
     scanf("%d", &size);
-
+    printf("size is %d\n", size);
     int arr[size];
     for (int i = 0; i < size; i++)
     {
