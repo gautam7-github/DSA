@@ -12,6 +12,7 @@ public:
         this->total = total;
         ADJ_List = new list<int>[total];
     }
+    // undirected edges
     void addEdge(int source, int dest)
     {
         ADJ_List[source].push_back(dest);
@@ -46,10 +47,15 @@ public:
             }
         }
     }
+    ~Trav()
+    {
+        delete[] ADJ_List;
+    }
 };
 int main()
 {
     Trav graph(7);
+    // undirected graph
     graph.addEdge(0, 1);
     graph.addEdge(0, 2);
     graph.addEdge(0, 5);
@@ -57,6 +63,7 @@ int main()
     graph.addEdge(1, 5);
     graph.addEdge(2, 6);
     graph.addEdge(3, 6);
+    // bfs from 0
     graph.BFS(0);
     return 0;
 }

@@ -29,17 +29,36 @@ public:
     {
         if (root == nullptr)
             return;
-        traverse_preorder(root->left);
+        traverse_inorder(root->left);
         cout << root->key << " ";
-        traverse_preorder(root->right);
+        traverse_inorder(root->right);
     }
     void traverse_postorder(Node *root)
     {
         if (root == nullptr)
             return;
-        traverse_preorder(root->left);
-        traverse_preorder(root->right);
+        traverse_postorder(root->left);
+        traverse_postorder(root->right);
         cout << root->key << " ";
+    }
+    void traverse_levelorder(Node *root)
+    {
+        queue<Node *> Q;
+        Q.push(root);
+        Node *curr = nullptr;
+        while (Q.size())
+        {
+            curr = Q.front();
+            Q.pop();
+
+            cout << curr->key << " ";
+
+            if (curr->left)
+                Q.push(curr->left);
+
+            if (curr->right)
+                Q.push(curr->right);
+        }
     }
 };
 int main()
@@ -58,7 +77,7 @@ int main()
         12     34
     */
     Node *child3 = node.getNode(10);
-    root->left->left = child3;
+    child1->left = child3;
     /*
             23
           /   \
@@ -67,10 +86,16 @@ int main()
     10
     */
     Trav.traverse_preorder(root);
+    // 23 12 10 34
     cout << endl;
     Trav.traverse_inorder(root);
+    // 10 12 23 34
     cout << endl;
     Trav.traverse_postorder(root);
+    // 10 12 34 23
+    cout << endl;
+    Trav.traverse_levelorder(root);
+    //  23 12 34 10
     cout << endl;
     return 0;
 }
